@@ -1,0 +1,71 @@
+/* This code is added for s3 bucket policy in AWS concole */
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Deny",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::my-s3-bucket-20220104135826514400000001",
+            "Condition": {
+                "StringNotLike": {
+                    "aws:userName": [
+                        "eswar"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Deny",
+            "Action": "s3:ListAllMyBuckets",
+            "Resource": "*",
+            "Condition": {
+                "StringNotLike": {
+                    "aws:userName": [
+                        "eswar"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Deny",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::my-s3-bucket-20220104135826514400000001/*",
+            "Condition": {
+                "StringNotLike": {
+                    "aws:userName": [
+                        "eswar"
+                    ]
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Deny",
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::my-s3-bucket-20220104135826514400000001"
+        },
+        {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": "s3:ListAllMyBuckets",
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject"
+            ],
+            "Resource": "arn:aws:s3:::my-s3-bucket-20220104135826514400000001/*"
+        }
+    ]
+}
